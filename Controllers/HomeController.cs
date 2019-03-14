@@ -24,7 +24,7 @@ namespace hwapp.Controllers
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "This is the hello world contact page.";
 
             return View();
         }
