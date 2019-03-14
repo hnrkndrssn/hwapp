@@ -17,7 +17,7 @@ namespace hwapp.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "This is the hello world application description page.";
 
             return View();
         }
