@@ -31,6 +31,7 @@ namespace hwapp.Controllers
 
         public IActionResult Privacy()
         {
+            ViewData["Message"] = "This is the hello world privacy page.";
             return View();
         }
 
