@@ -11,4 +11,4 @@ With a bit more details
 ## Releasing it
 More deets on releasing
 
-Whoops, went a bit too fast for CI there
+Whoops, went a bit too fast for CI there.
