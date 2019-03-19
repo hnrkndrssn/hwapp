@@ -9,3 +9,4 @@ With a bit more details
 - This is it y'all
 
 ## Releasing it
+More deets on releasing
