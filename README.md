@@ -12,4 +12,4 @@ With a bit more details
 More deets on releasing
 
 Whoops, went a bit too fast for CI there.
-Update for end 2 end test
+Update for end 2 end test, and now it'll actually parse my Jira issue
