@@ -16,3 +16,6 @@ Update for end 2 end test, and now it'll actually parse my Jira issue
 And another update here
 
 This update is for realz now
+
+Testing for release notes #1
+Testing for release notes #2
