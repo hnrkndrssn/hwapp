@@ -17,5 +17,5 @@ And another update here
 
 This update is for realz now
 
-Testing for release notes #1
-Testing for release notes #2
+- Testing for release notes #1
+- Testing for release notes #2
