@@ -21,3 +21,5 @@ This update is for realz now
 - Testing for release notes #2
 
 - Flipping tables
+
+- Cross-repo boundary testing
