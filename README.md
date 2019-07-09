@@ -27,4 +27,4 @@ This update is for realz now
 - Yea
 - Will it work, that is the question?
 - Yet another update
-- Testing for Jira Server
+- Testing for Jira Server again since I forgot a little detail
