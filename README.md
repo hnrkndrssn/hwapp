@@ -28,5 +28,3 @@ This update is for realz now
 - Will it work, that is the question?
 - Yet another update
 - Testing for Jira Server again since I forgot a little detail
-- Test tagging
-- Another test for tag
