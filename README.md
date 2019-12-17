@@ -29,3 +29,4 @@ This update is for realz now
 - Yet another update
 - Testing for Jira Server again since I forgot a little detail
 - Test for Jenkins integration...???!!!
+- This one's for you Jenkins
