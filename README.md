@@ -31,3 +31,4 @@ This update is for realz now
 - Test for Jenkins integration...???!!!
 - This one's for you Jenkins
 - Try again
+- Testing build info multi-package in TeamCity
