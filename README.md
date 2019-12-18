@@ -38,3 +38,4 @@ This update is for realz now
 - One more try
 - This is getting annoying
 - This is it!
+- And now for Bamboo
