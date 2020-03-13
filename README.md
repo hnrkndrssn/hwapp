@@ -39,3 +39,4 @@ This update is for realz now
 - This is getting annoying
 - This is it!
 - And now for Bamboo
+- Another ADOps but from GH this time
