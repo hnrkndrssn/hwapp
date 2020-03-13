@@ -42,4 +42,4 @@ This update is for realz now
 - Another ADOps but from GH this time..............
 - Now it'll work
 - Teamcity testing, again
-- TeamCity testing Jira PHNX-1
+- TeamCity testing Jira, Jira issue ref should be in the commit message dumbo
