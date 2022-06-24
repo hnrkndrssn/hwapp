@@ -1,0 +1,17 @@
+name: "Push build information to Octopus"
+on: [push]
+env:
+  OCTOPUS_HOST: ${{ secrets.OCTOPUS_URL }}
+  OCTOPUS_API_KEY: ${{ secrets.OCTOPUS_API_KEY }}
+jobs:
+  push-build-information:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Push build information to Octopus Deploy 🐙
+        uses: OctopusDeploy/push-build-information-action@v0
+        with:
+          packages: |
+            dotnettest
+          space: Spaces-1
+          version: 0.1.${{ github.run_number }}
+          debug: true
