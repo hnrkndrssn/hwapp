@@ -9,6 +9,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A hello world app</description>
     <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <repository type="git" url="https://github.com/hnrkndrssn/HwApp.git" />
     <copyright>Copyright 2017</copyright>
     <tags>Tag1 Tag2</tags>
   </metadata>
