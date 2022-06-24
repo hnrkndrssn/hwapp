@@ -14,3 +14,4 @@ jobs:
             'dotnettest'
           space: 'Spaces-1'
           version: '0.0.12'
+          debug: true
