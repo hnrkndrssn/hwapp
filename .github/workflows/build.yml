@@ -13,5 +13,5 @@ jobs:
           packages: |
             dotnettest
           space: Spaces-1
-          version: 0.0.12
+          version: 0.1.${{ github.run_number }}
           debug: true
