@@ -9,8 +9,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: run
-        run: echo "hello ${{ github.event.head_commit.author.username }}"
-        if: ${{ github.event.head_commit.author.username != 'alfhenrik-test-2' }}
+        run: echo "hello ${{ github.event.head_commit.author.username }} ${{ github.head_ref }}"
+        if: ${{ github.head_ref != 'main' || github.event.head_commit.author.username != 'alfhenrik-test-2' }}
       - name: alt run
-        run: echo "hello release-please change"
+        run: echo "hello release-please change ${{ github.head_ref }}"
         if: ${{ github.event.head_commit.author.username == 'alfhenrik-test-2' }}
