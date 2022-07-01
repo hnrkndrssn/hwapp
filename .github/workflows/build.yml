@@ -9,4 +9,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: run
-        run: echo "hello"
+        run: echo "hello ${{ github.event.head_commit.author.username }}"
