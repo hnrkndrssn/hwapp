@@ -7,11 +7,6 @@ jobs:
   push-build-information:
     runs-on: ubuntu-latest
     steps:
-      - name: Push build information to Octopus Deploy 🐙
-        uses: OctopusDeploy/push-build-information-action@v0
-        with:
-          packages: |
-            dotnettest
-          space: Spaces-1
-          version: 0.1.${{ github.run_number }}
-          debug: true
+      - uses: actions/checkout@v3
+      - name: run
+        run: echo "hello"
