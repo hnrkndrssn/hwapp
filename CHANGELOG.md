@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/hnrkndrssn/hwapp/compare/v1.0.2...v1.0.3) (2022-07-01)
+
+
+### Bug Fixes
+
+* all the ting ([215e551](https://github.com/hnrkndrssn/hwapp/commit/215e5513218410109d5916557ae92e82d08d617e))
+
 ## [1.0.2](https://github.com/hnrkndrssn/hwapp/compare/v1.0.1...v1.0.2) (2022-07-01)
 
 
