@@ -76,8 +76,8 @@ jobs:
       - name: 'Create PR'
         if: ${{ steps.version-update.outputs.changes-committed == 'true' }}
         run: |
-          prTitle="Add compatibility for Bamboo version ${{ needs.check-for-bamboo-update.outputs.bamboo-version"
+          prTitle="Add compatibility for Bamboo version ${{ needs.check-for-bamboo-update.outputs.bamboo-version }}"
           prBody="Fixes ${{ needs.check-for-bamboo-update.outputs.gh-issue-url }}"
-          head=${{ steps.version-update.outputs.branch }}
+          head="${{ steps.version-update.outputs.branch }}"
           
           gh pr create --title $prTitle --body $prBody --base "main" --head $head --reviewer "OctopusDeploy/team-integrations-fnm"
