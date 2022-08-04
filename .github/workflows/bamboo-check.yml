@@ -12,7 +12,7 @@ jobs:
     outputs:
       update-available: ${{ steps.version-check.outputs.update-available }}
       bamboo-version: ${{ steps.version-check.outputs.latest-bamboo-version }}
-      gh-issue-url: ${{ steps.create-issue.issue-url }}
+      gh-issue-url: ${{ steps.create-issue.outputs.issue-url }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -36,8 +36,8 @@ jobs:
       - name: 'Create Issue'
         if: ${{ steps.version-check.outputs.update-available }}
         run: |
-          compatibleBambooVersion="${{ steps.version-check.current-compatible-version }}"
-          latestBambooVersion="${{ steps.version-check.latest-bamboo-version }}"
+          compatibleBambooVersion=${{ steps.version-check.outputs.current-compatible-version }}
+          latestBambooVersion=${{ steps.version-check.outputs.latest-bamboo-version }}
           
           issueTitle="Add-on Update Request: Support for new Bamboo version"
           issueBody=$(printf '%s' $(cat << EOF
