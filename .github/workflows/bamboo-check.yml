@@ -102,4 +102,4 @@ jobs:
           prBody="Fixes ${{ needs.create-issue.outputs.gh-issue-url }}"
           head="${{ needs.update-pom.outputs.branch }}"
           
-          gh pr create --title "$prTitle" --body "$prBody" --base "main" --head "$head" --reviewer "@alfhenrik-test-2"
+          gh pr create --title "$prTitle" --body "$prBody" --base "main" --head "$head" --reviewer "alfhenrik-test-2"
