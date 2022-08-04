@@ -47,14 +47,15 @@ jobs:
           EOF
           ))
           # create issue and assign it to @team-integrations-fnm-bot
-          issueUrl=$(gh issue create --title "$issueTitle" --body "$issueBody" --assignee "@me")
+          issueUrl=$(gh issue create --title "$issueTitle" --body $issueBody --assignee "@me")
+          echo $issueUrl
 
           echo "::set-output name=issue-url::$issueUrl"
 
   update-pom-and-create-pr:
     runs-on: 'ubuntu-latest'
     needs: check-for-bamboo-update
-    if: ${{ needs.check-for-bamboo-update.outputs.issue-url != '' }}
+    if: ${{ needs.check-for-bamboo-update.outputs.gh-issue-url != '' }}
     steps:
       - uses: actions/checkout@v3
         with:
