@@ -10,7 +10,7 @@ jobs:
   check-for-bamboo-update:
     runs-on: 'ubuntu-latest'
     outputs:
-      update-available: ${{ steps.version-check.outputs.needs-update }}
+      update-available: ${{ steps.version-check.outputs.update-available }}
       bamboo-version: ${{ steps.version-check.outputs.latest-bamboo-version }}
       gh-issue-url: ${{ steps.create-issue.issue-url }}
     steps:
@@ -19,17 +19,18 @@ jobs:
         run: |
           # get the version our plugin is compatible with
           currentCompatibleVersion=$(curl -sS -X GET https://marketplace.atlassian.com/rest/2/addons/com.octopus.bamboo/versions/latest | jq '.compatibilities[0].hosting.server.max.version')
+          echo $currentCompatibleVersion
 
           # get latest available version of Bamboo
           latestBambooVersion=$(curl -sS -X GET https://marketplace.atlassian.com/rest/2/products/key/bamboo/versions/latest | jq '.name')
+          echo $latestBambooVersion
 
-          echo "::set-output name=needs-update::true"
+          echo "::set-output name=update-available::true"
           echo "::set-output name=current-compatible-version::$currentCompatibleVersion"
           echo "::set-output name=latest-bamboo-version::$latestBambooVersion"
 
       - name: 'Create Issue'
-        id: create-issue
-        if: ${{ steps.version-check.outputs.needs-update }}
+        if: ${{ steps.version-check.outputs.update-available }}
         run: |
           compatibleBambooVersion="${{ steps.version-check.current-compatible-version }}"
           latestBambooVersion="${{ steps.version-check.latest-bamboo-version }}"
@@ -42,7 +43,7 @@ jobs:
           EOF
           ))
           # create issue and assign it to @team-integrations-fnm-bot
-          issueUrl=$(gh issue create --title $issueTitle --body $issueBody --assignee "@me")
+          issueUrl=$(gh issue create --title "$issueTitle" --body "$issueBody" --assignee "@me")
 
           echo "::set-output name=issue-url::$issueUrl"
 
@@ -56,7 +57,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 'Commit POM update'
-        id: version-update
+        id: pom-update
         run: |
           bambooVersion="${{ needs.check-for-bamboo-update.outputs.bamboo-version }}"
           branchName="team-integrations-fnm-bot/bamboo-$bambooVersion"
@@ -74,7 +75,7 @@ jobs:
           echo "::set-output name=branch-name::$branchName"
 
       - name: 'Create PR'
-        if: ${{ steps.version-update.outputs.changes-committed == 'true' }}
+        if: ${{ steps.pom-update.outputs.changes-committed }}
         run: |
           prTitle="Add compatibility for Bamboo version ${{ needs.check-for-bamboo-update.outputs.bamboo-version }}"
           prBody="Fixes ${{ needs.check-for-bamboo-update.outputs.gh-issue-url }}"
