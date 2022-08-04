@@ -76,7 +76,7 @@ jobs:
           sed -i "s/\(^.*<bamboo.data.version>\).*\(<\/bamboo.data.version>.*$\)/\1$bambooVersion\2/g" pom.xml
 
           git add pom.xml
-          git diff-index --quite HEAD || (git commit -m "fix: update compatible bamboo version" && git push origin && echo "::set-output name=changes-committed::true")
+          git diff-index --quiet HEAD || (git commit -m "fix: update compatible bamboo version" && git push -u origin $branchName && echo "::set-output name=changes-committed::true")
           
           echo "::set-output name=branch-name::$branchName"
 
