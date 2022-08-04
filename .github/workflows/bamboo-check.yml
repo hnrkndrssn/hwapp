@@ -90,7 +90,7 @@ jobs:
           git checkout -b $branchName
           
           # Update the version in the <bamboo.version> and <bamboo.data.version> properties
-          sed "s/\(^.*<bamboo\(.data\)\?.version>\).*\(<\/bamboo\(.data\)\?.version>.*$\)/\1$bambooVersion\3/g" pom.xml
+          sed -i "s/\(^.*<bamboo\(.data\)\?.version>\).*\(<\/bamboo\(.data\)\?.version>.*$\)/\1$bambooVersion\3/g" pom.xml
 
           git add pom.xml
           # if no changes were made, just silently exit
