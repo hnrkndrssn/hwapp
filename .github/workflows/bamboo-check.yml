@@ -42,8 +42,8 @@ jobs:
           
           issueTitle="Add-on Update Request: Support for new Bamboo version"
           issueBody=$(cat << EOF
-          ## Add-on compatibility update\n\n
-          - **Compatible Bamboo version:** \`$compatibleBambooVersion\`\n
+          ## Add-on compatibility update
+          - **Compatible Bamboo version:** \`$compatibleBambooVersion\`
           - **New Bamboo version:** \`$latestBambooVersion\`
           EOF
           )
