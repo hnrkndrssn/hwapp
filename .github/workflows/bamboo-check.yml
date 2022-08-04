@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  GH_TOKEN: ${{ secrets.RELEASE_PLEASE_API_TOKEN }}
+  GH_TOKEN: ${{ secrets.API_TOKEN }}
 
 jobs:
   check-for-bamboo-update:
@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          token: ${{ secrets.RELEASE_PLEASE_API_TOKEN }}
+          token: ${{ secrets.API_TOKEN }}
       
       - name: 'Check for new version of Bamboo'
         id: version-check
@@ -58,7 +58,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          token: ${{ secrets.RELEASE_PLEASE_API_TOKEN }}
+          token: ${{ secrets.API_TOKEN }}
 
       - name: 'Commit POM update'
         id: pom-update
