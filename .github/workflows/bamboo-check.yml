@@ -48,7 +48,7 @@ jobs:
           EOF
           )
           # create issue and assign it to @team-integrations-fnm-bot
-          issueUrl=$(gh issue create --title "$issueTitle" --body $issueBody --assignee "@me")
+          issueUrl=$(gh issue create --title "$issueTitle" --body "$issueBody" --assignee "@me")
           echo $issueUrl
 
           echo "::set-output name=issue-url::$issueUrl"
