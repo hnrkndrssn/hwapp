@@ -34,18 +34,19 @@ jobs:
           echo "::set-output name=latest-bamboo-version::$latestBambooVersion"
 
       - name: 'Create Issue'
+        id: create-issue
         if: ${{ steps.version-check.outputs.update-available }}
         run: |
           compatibleBambooVersion=${{ steps.version-check.outputs.current-compatible-version }}
           latestBambooVersion=${{ steps.version-check.outputs.latest-bamboo-version }}
           
           issueTitle="Add-on Update Request: Support for new Bamboo version"
-          issueBody=$(printf '%s' $(cat << EOF
+          issueBody=$(cat << EOF
           ## Add-on compatibility update\n\n
           - **Compatible Bamboo version:** \`$compatibleBambooVersion\`\n
           - **New Bamboo version:** \`$latestBambooVersion\`
           EOF
-          ))
+          )
           # create issue and assign it to @team-integrations-fnm-bot
           issueUrl=$(gh issue create --title "$issueTitle" --body $issueBody --assignee "@me")
           echo $issueUrl
