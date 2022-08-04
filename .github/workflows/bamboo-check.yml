@@ -13,7 +13,7 @@ jobs:
     runs-on: 'ubuntu-latest'
     outputs:
       update-available: ${{ steps.version-check.outputs.update-available }}
-      current-compatible-version: ${{ steps.version-check.outputs.current-compatible-version }}
+      compatible-version: ${{ steps.version-check.outputs.current-compatible-version }}
       bamboo-version: ${{ steps.version-check.outputs.latest-bamboo-version }}
       gh-issue-url: ${{ steps.create-issue.outputs.issue-url }}
     steps:
@@ -45,8 +45,8 @@ jobs:
       - name: 'Create Issue'
         id: create-issue
         run: |
-          compatibleBambooVersion=${{ needs.check-for-update.outputs.current-compatible-version }}
-          latestBambooVersion=${{ needs.check-for-update.outputs.latest-bamboo-version }}
+          compatibleBambooVersion=${{ needs.check-for-update.outputs.compatible-version }}
+          latestBambooVersion=${{ needs.check-for-update.outputs.bamboo-version }}
           
           issueTitle="Add-on Update Request: Support for new Bamboo version"
           issueBody=$(cat << EOF
