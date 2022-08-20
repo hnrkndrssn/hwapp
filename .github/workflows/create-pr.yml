@@ -5,9 +5,8 @@ on:
     branches: 
       - 'releases/**'
   pull_request:
-    branches: [
-      $default-branch
-    ]
+    branches: 
+      - 'main'
 
 # Increase the access for the GITHUB_TOKEN
 permissions:
