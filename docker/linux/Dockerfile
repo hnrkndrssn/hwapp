@@ -29,4 +29,4 @@ RUN bash --version
 
 WORKDIR /src
 
-CMD [ ""/bin/bash"" ]
+CMD [ "/bin/bash" ]
