@@ -1,0 +1,32 @@
+step "run-a-script" {
+    name = "Run a Script"
+
+    action {
+        action_type = "Octopus.Script"
+        properties = {
+            Octopus.Action.Package.DownloadOnTentacle = "False"
+            Octopus.Action.Package.FeedId = "octopus-server-built-in"
+            Octopus.Action.Package.PackageId = "ScriptStepsProject"
+            Octopus.Action.RunOnServer = "true"
+            Octopus.Action.Script.ScriptFileName = "Scripting\\Say-Greeting.ps1"
+            Octopus.Action.Script.ScriptParameters = "-CustomGreetingAsScriptParameter \"foo\" -SomeOtherValueAsScriptParameter \"bar\""
+            Octopus.Action.Script.ScriptSource = "Package"
+            OctopusUseBundledTooling = "False"
+        }
+        worker_pool = "hosted-ubuntu"
+
+        container {
+            feed = "docker-hub"
+            image = "octopusdeploy/worker-tools:6.1.1-ubuntu.22.04"
+        }
+
+        packages {
+            acquisition_location = "Server"
+            feed = "octopus-server-built-in"
+            package_id = "ScriptStepsProject"
+            properties = {
+                SelectionMode = "immediate"
+            }
+        }
+    }
+}
