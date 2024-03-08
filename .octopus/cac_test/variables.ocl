@@ -1,0 +1,9 @@
+variable "VariableTest" {
+    value "local" {
+        environment = ["local"]
+    }
+
+    value "dev" {
+        environment = ["dev"]
+    }
+}
