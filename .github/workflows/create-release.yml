@@ -1,0 +1,18 @@
+on:
+  workflow_dispatch:
+env:
+  OCTOPUS_API_KEY: ${{ secrets.OCTOPUS_API_KEY  }}
+  OCTOPUS_URL: ${{ secrets.OCTOPUS_URL }}
+  OCTOPUS_SPACE: 'Default' 
+  
+jobs:
+  create_release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create Release in Octopus Deploy
+        uses: OctopusDeploy/create-release-action@v3
+        with:
+          project: 'Dynamic Package Reference Test'
+          packages: |
+            'Run a Script:henrik-test-function:0.0.1'
