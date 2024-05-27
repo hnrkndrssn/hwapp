@@ -14,6 +14,6 @@ jobs:
         uses: OctopusDeploy/create-release-action@v3
         with:
           project: 'Dynamic Package Reference Test'
-          packages:
+          packages: |
             Run a Script:henrik-test-function:${{ env.PACKAGE_VERSION }}
             toolscripts:0.0.3
