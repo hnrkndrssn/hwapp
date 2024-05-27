@@ -15,4 +15,4 @@ jobs:
         with:
           project: 'Dynamic Package Reference Test'
           packages:
-            - 'Run a Script:henrik-test-function:${{ env.PACKAGE_VERSION }}'
+            'Run a Script:henrik-test-function:${{ env.PACKAGE_VERSION }}'
