@@ -11,3 +11,16 @@ step "run-a-script" {
         worker_pool = "default-worker-pool"
     }
 }
+
+step "template-with-default-parameter-value-test" {
+    name = "Template with default parameter value test"
+
+    action {
+        properties = {
+            Octopus.Action.Template.Id = "ActionTemplates-101"
+            Octopus.Action.Template.Version = "8"
+            Parameter1 = "default2"
+        }
+        worker_pool = "default-worker-pool"
+    }
+}
