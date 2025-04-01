@@ -17,6 +17,7 @@ step "template-with-default-parameter-value-test" {
     name = "Template with default parameter value test"
 
     action {
+        environments = ["local"]
         properties = {
             Octopus.Action.Template.Id = "ActionTemplates-101"
             Octopus.Action.Template.Version = "8"
