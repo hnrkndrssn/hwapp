@@ -3,6 +3,7 @@ step "run-a-script" {
 
     action {
         action_type = "Octopus.Script"
+        channels = ["hotfix"]
         properties = {
             Octopus.Action.Script.ScriptBody = "Write-Host \"Hello, World!\""
             Octopus.Action.Script.ScriptSource = "Inline"
