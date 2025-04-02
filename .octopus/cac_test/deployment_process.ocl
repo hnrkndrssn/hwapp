@@ -26,3 +26,33 @@ step "template-with-default-parameter-value-test" {
         worker_pool = "default-worker-pool"
     }
 }
+
+step "deploy-a-package" {
+    name = "Deploy a Package"
+    properties = {
+        Octopus.Action.TargetRoles = "azure"
+    }
+
+    action {
+        action_type = "Octopus.TentaclePackage"
+        excluded_environments = ["local"]
+        properties = {
+            Octopus.Action.EnabledFeatures = ",Octopus.Features.ConfigurationTransforms,Octopus.Features.ConfigurationVariables"
+            Octopus.Action.Package.AutomaticallyRunConfigurationTransformationFiles = "True"
+            Octopus.Action.Package.AutomaticallyUpdateAppSettingsAndConnectionStrings = "True"
+            Octopus.Action.Package.DownloadOnTentacle = "False"
+            Octopus.Action.Package.FeedId = "octopus-server-built-in"
+            Octopus.Action.Package.PackageId = "dotnettest"
+        }
+        worker_pool_variable = ""
+
+        packages {
+            acquisition_location = "Server"
+            feed = "octopus-server-built-in"
+            package_id = "dotnettest"
+            properties = {
+                SelectionMode = "immediate"
+            }
+        }
+    }
+}
