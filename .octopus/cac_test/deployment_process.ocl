@@ -57,3 +57,29 @@ step "deploy-a-package" {
         }
     }
 }
+
+step "run-a-script-from-git" {
+    name = "Run a Script from Git"
+
+    action {
+        action_type = "Octopus.Script"
+        properties = {
+            Octopus.Action.GitRepository.Source = "External"
+            Octopus.Action.Script.ScriptFileName = "Scripts/MyScript.sh"
+            Octopus.Action.Script.ScriptSource = "GitRepository"
+            OctopusUseBundledTooling = "False"
+        }
+        worker_pool = "default-worker-pool"
+
+        container {
+            git_url = "https://github.com/hnrkndrssn/hwapp/blob/main/docker/linux/Dockerfile"
+        }
+
+        git_dependencies {
+            default_branch = "main"
+            git_credential_id = "GitCredentials-1"
+            git_credential_type = "Library"
+            repository_uri = "https://github.com/hnrkndrssn/hwapp.git"
+        }
+    }
+}
