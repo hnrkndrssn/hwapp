@@ -7,3 +7,12 @@ variable "VariableTest" {
         environment = ["dev"]
     }
 }
+
+variable "TestAccount" {
+    type = "AmazonWebServicesAccount"
+
+    value "aws-oidc-test" {
+        channel = ["pre-release"]
+        machine = ["az-web-app", "offline-target"]
+    }
+}
