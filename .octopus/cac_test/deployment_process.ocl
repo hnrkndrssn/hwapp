@@ -41,14 +41,15 @@ step "deploy-a-package" {
             Octopus.Action.Package.AutomaticallyRunConfigurationTransformationFiles = "True"
             Octopus.Action.Package.AutomaticallyUpdateAppSettingsAndConnectionStrings = "True"
             Octopus.Action.Package.DownloadOnTentacle = "False"
-            Octopus.Action.Package.FeedId = "octopus-server-built-in"
+            Octopus.Action.Package.FeedId = "art"
             Octopus.Action.Package.PackageId = "dotnettest"
+            Octopus.Action.RunOnServer = "false"
         }
         worker_pool_variable = ""
 
         packages {
             acquisition_location = "Server"
-            feed = "octopus-server-built-in"
+            feed = "art"
             package_id = "dotnettest"
             properties = {
                 SelectionMode = "immediate"
