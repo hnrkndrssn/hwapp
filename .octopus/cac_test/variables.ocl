@@ -16,3 +16,9 @@ variable "TestAccount" {
         machine = ["az-web-app", "offline-target"]
     }
 }
+
+variable "TheCert" {
+    type = "Certificate"
+
+    value "Certificates-21" {}
+}
