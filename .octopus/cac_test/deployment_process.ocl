@@ -147,6 +147,7 @@ step "run-a-kubectl-scriptss" {
             Octopus.Action.Package.DownloadOnTentacle = "False"
             Octopus.Action.Package.FeedId = "local-oci-registry"
             Octopus.Action.Package.PackageId = "testpackage"
+            Octopus.Action.RunOnServer = "false"
             Octopus.Action.Script.ScriptFileName = "TheFile.sh"
             Octopus.Action.Script.ScriptSource = "Package"
         }
@@ -160,5 +161,18 @@ step "run-a-kubectl-scriptss" {
                 SelectionMode = "immediate"
             }
         }
+    }
+}
+
+step "deploy-a-release" {
+    name = "Deploy a Release"
+
+    action {
+        action_type = "Octopus.DeployRelease"
+        properties = {
+            Octopus.Action.DeployRelease.DeploymentCondition = "Always"
+            Octopus.Action.DeployRelease.ProjectId = "account-testing"
+        }
+        worker_pool_variable = ""
     }
 }
