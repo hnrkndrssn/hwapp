@@ -125,11 +125,40 @@ step "run-an-aws-cli-script" {
             Octopus.Action.Aws.Region = "ap-southeast-2"
             Octopus.Action.AwsAccount.UseInstanceRole = "False"
             Octopus.Action.AwsAccount.Variable = "TestAccount"
+            Octopus.Action.RunOnServer = "false"
             Octopus.Action.Script.ScriptBody = "echo \"hello\""
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
             OctopusUseBundledTooling = "False"
         }
         worker_pool_variable = ""
+    }
+}
+
+step "run-a-kubectl-scriptss" {
+    name = "Run a kubectl scriptss"
+    properties = {
+        Octopus.Action.TargetRoles = "k8s"
+    }
+
+    action {
+        action_type = "Octopus.KubernetesRunScript"
+        properties = {
+            Octopus.Action.Package.DownloadOnTentacle = "False"
+            Octopus.Action.Package.FeedId = "local-oci-registry"
+            Octopus.Action.Package.PackageId = "testpackage"
+            Octopus.Action.Script.ScriptFileName = "TheFile.sh"
+            Octopus.Action.Script.ScriptSource = "Package"
+        }
+        worker_pool_variable = ""
+
+        packages {
+            acquisition_location = "Server"
+            feed = "local-oci-registry"
+            package_id = "testpackage"
+            properties = {
+                SelectionMode = "immediate"
+            }
+        }
     }
 }
