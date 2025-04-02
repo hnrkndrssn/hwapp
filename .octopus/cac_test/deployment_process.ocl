@@ -172,6 +172,26 @@ step "deploy-a-release" {
         properties = {
             Octopus.Action.DeployRelease.DeploymentCondition = "Always"
             Octopus.Action.DeployRelease.ProjectId = "account-testing"
+            Octopus.Action.RunOnServer = "false"
+        }
+        worker_pool_variable = ""
+    }
+}
+
+step "import-certificate" {
+    name = "Import Certificate"
+    properties = {
+        Octopus.Action.TargetRoles = "web"
+    }
+
+    action {
+        action_type = "Octopus.Certificate.Import"
+        properties = {
+            Octopus.Action.Certificate.PrivateKeyAccessRules = "[]"
+            Octopus.Action.Certificate.PrivateKeyExportable = "False"
+            Octopus.Action.Certificate.StoreLocation = "LocalMachine"
+            Octopus.Action.Certificate.StoreName = "My"
+            Octopus.Action.Certificate.Variable = "TheCert"
         }
         worker_pool_variable = ""
     }
