@@ -1,0 +1,15 @@
+step "build-info-test" {
+    name = "Build Info Test"
+    properties = {
+        Octopus.Action.TargetRoles = "web"
+    }
+
+    action {
+        properties = {
+            Octopus.Action.Template.Id = "ActionTemplates-61"
+            Octopus.Action.Template.Version = "1"
+            PackageId = "hwapp"
+        }
+        worker_pool_variable = ""
+    }
+}
