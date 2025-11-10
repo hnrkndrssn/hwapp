@@ -174,7 +174,6 @@ step "deploy-a-release" {
             Octopus.Action.DeployRelease.ProjectId = "account-testing"
             Octopus.Action.RunOnServer = "false"
         }
-        worker_pool_variable = ""
     }
 }
 
@@ -192,7 +191,24 @@ step "import-certificate" {
             Octopus.Action.Certificate.StoreLocation = "LocalMachine"
             Octopus.Action.Certificate.StoreName = "My"
             Octopus.Action.Certificate.Variable = "TheCert"
+            Octopus.Action.RunOnServer = "false"
         }
+        worker_pool_variable = ""
+    }
+}
+
+step "azure-app-service-test" {
+    name = "Azure App Service Test"
+    properties = {
+        Octopus.Action.TargetRoles = "azure"
+    }
+
+    action {
+        properties = {
+            Octopus.Action.Template.Id = "ActionTemplates-81"
+            Octopus.Action.Template.Version = "0"
+        }
+        worker_pool = "default-worker-pool"
         worker_pool_variable = ""
     }
 }
