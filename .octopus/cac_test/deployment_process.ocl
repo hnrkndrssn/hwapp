@@ -206,7 +206,7 @@ step "azure-app-service-test" {
     action {
         properties = {
             Octopus.Action.Template.Id = "ActionTemplates-81"
-            Octopus.Action.Template.Version = "1"
+            Octopus.Action.Template.Version = "2"
             TheParam = "Lalalal"
         }
         worker_pool = "default-worker-pool"
