@@ -208,7 +208,7 @@ step "azure-app-service-test" {
             Octopus.Action.Package.FeedId = "octopus-server-built-in"
             Octopus.Action.Package.PackageId = "dotnettest"
             Octopus.Action.Template.Id = "ActionTemplates-81"
-            Octopus.Action.Template.Version = "3"
+            Octopus.Action.Template.Version = "8"
             ThePackage = "{\"PackageId\":\"dotnettest\",\"FeedId\":\"octopus-server-built-in\"}"
             TheParam = "Lalalal"
         }
