@@ -205,11 +205,24 @@ step "azure-app-service-test" {
 
     action {
         properties = {
+            Octopus.Action.Package.FeedId = "octopus-server-built-in"
+            Octopus.Action.Package.PackageId = "dotnettest"
             Octopus.Action.Template.Id = "ActionTemplates-81"
-            Octopus.Action.Template.Version = "2"
+            Octopus.Action.Template.Version = "3"
+            ThePackage = "{\"PackageId\":\"dotnettest\",\"FeedId\":\"octopus-server-built-in\"}"
             TheParam = "Lalalal"
         }
         worker_pool = "default-worker-pool"
         worker_pool_variable = ""
+
+        packages {
+            acquisition_location = "Server"
+            feed = "octopus-server-built-in"
+            package_id = "dotnettest"
+            properties = {
+                PackageParameterName = "ThePackage"
+                SelectionMode = "deferred"
+            }
+        }
     }
 }
