@@ -1,0 +1,27 @@
+step "the-template" {
+    name = "The Template"
+    properties = {
+        Octopus.Action.TargetRoles = "app-server"
+    }
+
+    action {
+        properties = {
+            Octopus.Action.Package.FeedId = "octopus-server-built-in"
+            Octopus.Action.Package.PackageId = "octopus.client"
+            Octopus.Action.Template.Id = "ActionTemplates-1"
+            Octopus.Action.Template.Version = "0"
+            ThePackage = "{\"PackageId\":\"octopus.client\",\"FeedId\":\"octopus-server-built-in\"}"
+        }
+        worker_pool_variable = ""
+
+        packages {
+            acquisition_location = "Server"
+            feed = "octopus-server-built-in"
+            package_id = "octopus.client"
+            properties = {
+                PackageParameterName = "ThePackage"
+                SelectionMode = "deferred"
+            }
+        }
+    }
+}
