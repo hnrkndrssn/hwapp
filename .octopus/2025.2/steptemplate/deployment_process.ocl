@@ -9,7 +9,7 @@ step "the-template" {
             Octopus.Action.Package.FeedId = "octopus-server-built-in"
             Octopus.Action.Package.PackageId = "octopus.client"
             Octopus.Action.Template.Id = "ActionTemplates-1"
-            Octopus.Action.Template.Version = "1"
+            Octopus.Action.Template.Version = "2"
             ThePackage = "{\"PackageId\":\"octopus.client\",\"FeedId\":\"octopus-server-built-in\"}"
         }
         worker_pool_variable = ""
