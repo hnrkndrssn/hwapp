@@ -7,7 +7,7 @@ step "the-template" {
     action {
         properties = {
             Octopus.Action.Template.Id = "ActionTemplates-1"
-            Octopus.Action.Template.Version = "4"
+            Octopus.Action.Template.Version = "5"
         }
         worker_pool_variable = ""
     }
