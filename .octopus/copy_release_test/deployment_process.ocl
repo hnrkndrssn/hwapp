@@ -1,0 +1,129 @@
+step "deploy-a-package" {
+    name = "Deploy a Package"
+    properties = {
+        Octopus.Action.TargetRoles = "web"
+    }
+
+    action {
+        action_type = "Octopus.TentaclePackage"
+        properties = {
+            Octopus.Action.EnabledFeatures = ",Octopus.Features.ConfigurationTransforms,Octopus.Features.ConfigurationVariables"
+            Octopus.Action.Package.AutomaticallyRunConfigurationTransformationFiles = "True"
+            Octopus.Action.Package.AutomaticallyUpdateAppSettingsAndConnectionStrings = "True"
+            Octopus.Action.Package.DownloadOnTentacle = "False"
+            Octopus.Action.Package.FeedId = "octopus-server-built-in"
+            Octopus.Action.Package.PackageId = "HwApp.Web"
+        }
+        worker_pool_variable = ""
+
+        packages {
+            acquisition_location = "Server"
+            feed = "octopus-server-built-in"
+            package_id = "HwApp.Web"
+            properties = {
+                SelectionMode = "immediate"
+            }
+        }
+    }
+}
+
+step "run-a-script" {
+    name = "Run a Script"
+
+    action {
+        action_type = "Octopus.Script"
+        properties = {
+            Octopus.Action.Script.ScriptBody = "Write-Host \"hello\""
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "PowerShell"
+            OctopusUseBundledTooling = "False"
+        }
+        worker_pool = "default-worker-pool"
+    }
+}
+
+step "deploy-an-azure-app-service" {
+    name = "Deploy an Azure App Service"
+    properties = {
+        Octopus.Action.TargetRoles = "azure"
+    }
+
+    action {
+        action_type = "Octopus.AzureAppService"
+        properties = {
+            Octopus.Action.Azure.DeploymentType = "Package"
+            Octopus.Action.EnabledFeatures = "Octopus.Features.JsonConfigurationVariables,Octopus.Features.ConfigurationTransforms,Octopus.Features.SubstituteInFiles"
+            Octopus.Action.Package.DownloadOnTentacle = "False"
+            Octopus.Action.Package.FeedId = "octopus-server-built-in"
+            Octopus.Action.Package.PackageId = "dotnettest"
+            OctopusUseBundledTooling = "False"
+        }
+        worker_pool = "default-worker-pool"
+        worker_pool_variable = ""
+
+        packages {
+            acquisition_location = "Server"
+            feed = "octopus-server-built-in"
+            package_id = "dotnettest"
+            properties = {
+                SelectionMode = "immediate"
+            }
+        }
+    }
+}
+
+step "run-an-azure-script" {
+    name = "Run an Azure Script"
+
+    action {
+        action_type = "Octopus.AzurePowerShell"
+        properties = {
+            Octopus.Action.Azure.AccountId = "henrik-oidc"
+            Octopus.Action.Script.ScriptBody = "az broke"
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "PowerShell"
+            OctopusUseBundledTooling = "False"
+        }
+        worker_pool = "default-worker-pool"
+        worker_pool_variable = ""
+
+        packages "ScriptsTest" {
+            acquisition_location = "Server"
+            feed = "octopus-server-built-in"
+            package_id = "ScriptsTest"
+            properties = {
+                Extract = "True"
+                SelectionMode = "immediate"
+            }
+        }
+    }
+}
+
+step "upload-a-package-to-an-aws-s3-bucket" {
+    name = "Upload a package to an AWS S3 bucket"
+
+    action {
+        action_type = "Octopus.AwsUploadS3"
+        properties = {
+            Octopus.Action.Aws.AssumeRole = "False"
+            Octopus.Action.Aws.Region = "us-west-1"
+            Octopus.Action.Aws.S3.BucketName = "the-bucket"
+            Octopus.Action.Aws.S3.PackageOptions = "{\"bucketKey\":\"bob/the/builder\",\"bucketKeyBehaviour\":\"Custom\",\"bucketKeyPrefix\":\"the/package\",\"storageClass\":\"STANDARD\",\"cannedAcl\":\"private\",\"variableSubstitutionPatterns\":\"\",\"structuredVariableSubstitutionPatterns\":\"\",\"metadata\":[],\"tags\":[]}"
+            Octopus.Action.Aws.S3.TargetMode = "EntirePackage"
+            Octopus.Action.AwsAccount.UseInstanceRole = "True"
+            Octopus.Action.Package.DownloadOnTentacle = "False"
+            Octopus.Action.Package.FeedId = "octopus-server-built-in"
+            Octopus.Action.Package.PackageId = "bamboo"
+        }
+        worker_pool = "default-worker-pool"
+
+        packages {
+            acquisition_location = "Server"
+            feed = "octopus-server-built-in"
+            package_id = "bamboo"
+            properties = {
+                SelectionMode = "immediate"
+            }
+        }
+    }
+}
