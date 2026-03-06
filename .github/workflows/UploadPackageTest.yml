@@ -1,6 +1,8 @@
 name: test-octopus-upload 
 run-name: ${{ github.actor }} running octopus package upload 
 on: [workflow_dispatch] 
+permissions:
+  id-token: write
 env:
   NODE_TLS_REJECT_UNAUTHORIZED: 0
   OCTOPUS_SPACE: Default
