@@ -1,0 +1,23 @@
+name: test-octopus-upload 
+run-name: ${{ github.actor }} running octopus package upload 
+on: [workflow_dispatch] 
+jobs: 
+  test-octopus-upload: 
+    runs-on: ubuntu-latest 
+    steps: 
+      - uses: actions/checkout@v5 
+      - uses: actions/setup-node@v4 
+      - run: echo "Hello" > "ion-backend-legacy.3.27.0-dev-master-6481-bcg6571.zip" 
+      - name: Install Octopus CLI 
+        uses: OctopusDeploy/install-octopus-cli-action@v4 
+        with: 
+          version: 
+      - name: Push Package to Octopus Deploy 
+        uses: OctopusDeploy/push-package-action@v4 
+        with: 
+          packages: | 
+            ion-backend-legacy.3.27.0-dev-master-6481-bcg6571.zip 
+          overwrite_mode: OverwriteExisting 
+          api_key: ${{secrets.OctopusAPIKey}}
+          server: ${{secrets.OctopusServer}}
+          space: Default
