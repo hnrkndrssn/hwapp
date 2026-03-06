@@ -15,8 +15,7 @@ jobs:
       - name: Push Package to Octopus Deploy 
         uses: OctopusDeploy/push-package-action@v4 
         with: 
-          packages: | 
-            ion-backend-legacy.3.27.0-dev-master-6481-bcg6571.zip 
+          packages: ion-backend-legacy.3.27.0-dev-master-6481-bcg6571.zip 
           overwrite_mode: OverwriteExisting 
           api_key: ${{secrets.OctopusAPIKey}}
           server: ${{secrets.OctopusServer}}
