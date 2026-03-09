@@ -32,7 +32,7 @@ jobs:
         uses: OctopusDeploy/login@v1
         with: 
           server: ${{secrets.OctopusServer}}
-          service_account_id: b596f88f-562e-43eb-8d78-707c6726ef16 #48ac31f4-2574-4190-8ced-a925f589cbf1
+          service_account_id: 48ac31f4-2574-4190-8ced-a925f589cbf1
     
       - name: Push a package to Octopus Deploy
         uses: OctopusDeploy/push-package-action@v4
