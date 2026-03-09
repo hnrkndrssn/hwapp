@@ -35,10 +35,9 @@ jobs:
           server: ${{secrets.OctopusServer}}
           service_account_id: 48ac31f4-2574-4190-8ced-a925f589cbf1
     
-      - name: Push Package to Octopus Deploy 
-        uses: OctopusDeploy/push-package-action@v3 
-        with: 
+      - name: Push a package to Octopus Deploy
+        uses: OctopusDeploy/push-package-action@v4
+        with:
           packages: |
-            ${{ inputs.package_id }}.${{ inputs.package_version }}.zip
-
-          overwrite_mode: IgnoreIfExists 
+            ${{ inputs.package_id }}.${{ inputs.version }}.zip
+          overwrite_mode: IgnoreIfExists
