@@ -39,5 +39,5 @@ jobs:
         uses: OctopusDeploy/push-package-action@v4
         with:
           packages: |
-            ${{ inputs.package_id }}.${{ inputs.version }}.zip
+            ${{ inputs.package_id }}.${{ inputs.package_version }}.zip
           overwrite_mode: IgnoreIfExists
