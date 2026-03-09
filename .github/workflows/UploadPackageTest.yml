@@ -21,7 +21,7 @@ jobs:
     steps: 
       - uses: actions/checkout@v5 
       - uses: actions/setup-node@v4 
-      - run: echo "Hello" > "${{ inputs.package_id }}.${{ inputs.package_version }}.zip" 
+      - run: fallocate -l 1G "${{ inputs.package_id }}.${{ inputs.package_version }}.zip" 
       
       - name: Install Octopus CLI 
         uses: OctopusDeploy/install-octopus-cli-action@v4 
