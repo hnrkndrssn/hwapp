@@ -31,7 +31,7 @@ jobs:
       - name: Login to Octopus Deploy 
         uses: OctopusDeploy/login@v1
         with: 
-          server: ${{secrets.OctopusServer}}
+          server: https://peach-sungazer.armada.octopushq.com
           service_account_id: 48ac31f4-2574-4190-8ced-a925f589cbf1
     
       - name: Push a package to Octopus Deploy
