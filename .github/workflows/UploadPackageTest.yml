@@ -22,7 +22,7 @@ jobs:
     steps: 
       - uses: actions/checkout@v5 
       - uses: actions/setup-node@v4 
-      - run: fallocate -l 10M "${{ inputs.package_id }}.${{ inputs.package_version }}-${{ github.run_number }}.zip" 
+      - run: fallocate -l 1M "${{ inputs.package_id }}.${{ inputs.package_version }}-${{ github.run_number }}.zip" 
       
       - name: Install Octopus CLI 
         uses: OctopusDeploy/install-octopus-cli-action@v4 
