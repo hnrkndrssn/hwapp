@@ -30,7 +30,7 @@ step "run-a-script" {
 
         git_dependencies {
             default_branch = "main"
-            git_credential_id = "GitCredentials-141"
+            git_credential_id = "GitCredentials-21"
             git_credential_type = "Library"
             repository_uri = "https://github.com/hnrkndrssn/HwApp.git"
         }
