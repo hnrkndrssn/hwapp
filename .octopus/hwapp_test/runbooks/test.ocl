@@ -10,4 +10,26 @@ run_retention_policy {
     type = "Default"
 }
 
-process {}
+process {
+    step "run-a-script" {
+        name = "Run a Script"
+
+        action {
+            action_type = "Octopus.Script"
+            properties = {
+                Octopus.Action.GitRepository.Source = "External"
+                Octopus.Action.Script.ScriptFileName = "scripts/hello_world.ps1"
+                Octopus.Action.Script.ScriptSource = "GitRepository"
+                OctopusUseBundledTooling = "False"
+            }
+            worker_pool = "default-worker-pool"
+
+            git_dependencies {
+                default_branch = "main"
+                git_credential_id = "GitCredentials-141"
+                git_credential_type = "Library"
+                repository_uri = "https://github.com/hnrkndrssn/HwApp.git"
+            }
+        }
+    }
+}
